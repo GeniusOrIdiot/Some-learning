@@ -5,6 +5,8 @@ import java.util.Comparator;
 /**
  * All copyright by MDMORY.
  *
+ * 平衡二叉树.
+ *
  * @author LiuYajun
  * @since 19-1-12 下午12:56
  */
@@ -13,11 +15,11 @@ public class AvlTree<T extends Comparable<T>> {
     private AvlNode<T> root;
     private Comparator<T> comp;
 
-    public AvlTree() {
+    AvlTree() {
         this(null);
     }
 
-    public AvlTree(Comparator<T> comp) {
+    private AvlTree(Comparator<T> comp) {
         this.root = null;
         this.comp = comp;
     }
@@ -25,8 +27,8 @@ public class AvlTree<T extends Comparable<T>> {
     /**
      * Insert item x into this avl tree.
      */
-    public AvlNode<T> insert(T x) {
-        return root = insert(x, root);
+    public void insert(T x) {
+        root = insert(x, root);
     }
 
     private AvlNode<T> insert(T x, AvlNode<T> node) {
@@ -50,9 +52,25 @@ public class AvlTree<T extends Comparable<T>> {
                     node = doubleWithLeftChild(node);
         } else return node;
 
-        node.h = Math.max(height(node.left), height(node.right)) + 1;
+        setHeight(node);
 
         return node;
+    }
+
+    public void printTree() {
+        if (root == null) {
+            System.out.println("Empty tree.");
+        } else {
+            printTree(root);
+        }
+    }
+
+    private void printTree(AvlNode<T> node) {
+        if (node != null) {
+            printTree(node.left);
+            System.out.println(node.element);
+            printTree(node.right);
+        }
     }
 
     /**

@@ -9,12 +9,14 @@ package algorithm.tree.avl;
 public class AvlTreeTest {
     public static void main(String[] args) {
         AvlTree<Integer> cellTree = new AvlTree<>();
-        cellTree.insert(3);
-        cellTree.insert(2);
         cellTree.insert(1);
+        cellTree.insert(2);
+        cellTree.insert(3);
         cellTree.insert(4);
         cellTree.insert(5);
         cellTree.insert(6);
         cellTree.insert(7);
+
+        cellTree.printTree();
     }
 }
