@@ -13,14 +13,14 @@ public class RBTree<T extends Comparable<T>> {
     private static final boolean RED = false;
     private static final boolean BLACK = true;
 
-    public class RBTNode<T extends Comparable<T>> {
+    private static class RBTNode<T extends Comparable<T>> {
         boolean color;        // 颜色
         T key;                // 关键字(键值)
         RBTNode<T> left;    // 左孩子
         RBTNode<T> right;    // 右孩子
         RBTNode<T> parent;    // 父结点
 
-        public RBTNode(T key, boolean color, RBTNode<T> parent, RBTNode<T> left, RBTNode<T> right) {
+        RBTNode(T key, boolean color, RBTNode<T> parent, RBTNode<T> left, RBTNode<T> right) {
             this.key = key;
             this.color = color;
             this.parent = parent;
@@ -128,7 +128,7 @@ public class RBTree<T extends Comparable<T>> {
      */
     private RBTNode<T> search(RBTNode<T> x, T key) {
         if (x == null)
-            return x;
+            return null;
 
         int cmp = key.compareTo(x.key);
         if (cmp < 0)
@@ -158,7 +158,7 @@ public class RBTree<T extends Comparable<T>> {
                 return x;
         }
 
-        return x;
+        return null;
     }
 
     public RBTNode<T> iterativeSearch(T key) {
@@ -447,11 +447,10 @@ public class RBTree<T extends Comparable<T>> {
      *     key 插入结点的键值
      */
     public void insert(T key) {
-        RBTNode<T> node = new RBTNode<T>(key, BLACK, null, null, null);
+        RBTNode<T> node = new RBTNode<>(key, BLACK, null, null, null);
 
         // 如果新建结点失败，则返回。
-        if (node != null)
-            insert(node);
+        insert(node);
     }
 
 

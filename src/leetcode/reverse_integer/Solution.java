@@ -2,7 +2,7 @@ package leetcode.reverse_integer;
 
 public class Solution {
 
-    public int reverse(int x) {
+    private static int reverse(int x) {
 
         boolean neg = false;
         long x_ = x;
@@ -21,5 +21,9 @@ public class Solution {
         } while (x_ > 0);
 
         return (int) (neg ? -res : res);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(reverse(12345));
     }
 }
